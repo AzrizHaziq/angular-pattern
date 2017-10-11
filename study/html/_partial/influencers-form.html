@@ -1,0 +1,116 @@
+<div class=" row position-relative">
+    <div class="col-xs-12 col-lg-10 col-lg-offset-1 col-lg-9 col-xl-8">
+        <div class="row">
+
+            <div class="col-xs-12 col-lg-11 margin-bottom-5">
+
+                <form editable-form name="study.influenceTable">
+
+                    <div class="row margin-bottom-10">
+
+                        <div class="col-xs-12 col-sm-6 inblock-bottom">
+                            <label class="text-uppercase font-weight-medium margin-bottom-0">
+                                Influencers:<span class="fg-umred">*</span>
+                            </label>
+                            <span class="fg-umred"
+                                  ng-if="study.state.influencers.items.length >= $root.app.constant.MAX_INFLUENCERS_ITEMS">
+                                Influencers exceed max number {{:: $root.app.constant.MAX_INFLUENCERS_ITEMS }}
+                            </span>
+                        </div>
+
+                        <div class="col-xs-12 col-sm-6 text-right inblock-bottom">
+
+                            <a class="inblock-baseline cursor-pointer height-30 padding-h-20 border-radius-25 border-style-solid border-width-1 border-color-umred bkg-transparent bkg-hover-umred fg-black fg-hover-white margin-left-5"
+                               ng-hide="study.influenceTable.$visible"
+                               ng-click="study.updateInfluenceForm(study.influenceTable)">
+                                <span class="v-mid font-size-small">Update</span>
+                            </a>
+
+                            <button class="inblock-mid cursor-pointer padding-v-5 padding-h-20 border-radius-25 border-style-solid border-width-1 border-color-umred bkg-transparent bkg-hover-umred fg-black fg-hover-white margin-left-5"
+                                    ng-class="study.influenceTable.$visible && !study.influenceTable.$submitted && study.influenceTable.$pristine ? 'error-input' : ''"
+                                    ng-click="study.saveInfluencer()"
+                                    ng-show="study.influenceTable.$visible">
+                                <span class="inblock-baseline font-size-small">Save</span>
+                            </button>
+
+                            <a class="inblock-mid cursor-pointer margin-left-5 border-round border-style-solid border-width-1 border-color-umred fill-umred fill-hover-white bkg-hover-umred"
+                               ng-show="study.influenceTable.$visible"
+                               ng-click="study.deleteNewlyAddedInfluencer(); study.influenceTable.$cancel()">
+                                <img class="-js-svg-inline width-30 height-30" src="../img/icon/icon-remove.svg"/>
+                            </a>
+
+                            <a ng-show="study.influenceTable.$visible"
+                               ng-click="study.addInfluencer()"
+                               ng-disabled="study.state.influencers.items.length >= $root.app.constant.MAX_INFLUENCERS_ITEMS"
+                               ng-class="study.state.influencers.items.length >= $root.app.constant.MAX_INFLUENCERS_ITEMS ? 'bkg-disabled-silver border-disabled-transparent fill-disabled-gallery' : ''"
+                               class="inblock-mid cursor-pointer margin-left-5 border-round border-style-solid border-width-1 border-color-umred fill-white fill-hover-umred bkg-umred bkg-hover-transparent">
+                                <img class="-js-svg-inline width-30 height-30" src="../img/icon/icon-add.svg"/>
+                            </a>
+                        </div>
+
+                    </div>
+
+                    <div
+                        class="bkg-white -js-um-scrollbar"
+                        data-mcs-axis="x"
+                        data-scrollbar-res="xs,sm,md"
+                    >
+                        <table class="table um-table table-hover table-condensed margin-bottom-0 -js-reposition-dropdown">
+
+                            <thead>
+                            <tr>
+                                <th class="border-partial-sm-right border-color-white min-width-200">Twitter Handle:</th>
+                                <th class="border-partial-sm-right border-color-white min-width-200">Influencer Name:</th>
+                                <th class="border-partial-sm-right border-color-white min-width-200">Influencer Nickname:</th>
+                                <th class="text-center">Action:</th>
+                            </tr>
+                            </thead>
+
+                            <tbody class="-js-observe-mutate influncer-dropdown-menu editable-wrap-display-block"
+                                   ng-class="study.validateInfluencerTable(study.influenceTable)? 'error-input': ''">
+
+                            <tr ng-repeat="influencer in study.state.influencers.items">
+                                <td>
+                                    <span editable-text="influencer.influencerTwitterHandle"
+                                          e-form="study.influenceTable"
+                                          e-placeholder="Twitter Handle"
+                                          e-ng-model-options="{ debounce: 500 }"
+                                          e-typeahead-on-select="study.onTwitterHandleSelect(influencer, $item)"
+                                          e-uib-typeahead="i.twitterHandles as i.twitterHandles for i in study.getInfluencersTwitterHandle($viewValue) | limitTo:8"
+                                          onaftersave="study.validateInfluencerTwitterHandle($data, 'Twitter Handle')">
+                                        {{ influencer.influencerTwitterHandle || '-' }}
+                                    </span>
+                                </td>
+                                <td>
+                                    <span editable-text="influencer.influencerName"
+                                          e-form="study.influenceTable"
+                                          e-placeholder="Influencer Name">
+                                    {{ influencer.influencerName || '-' }}
+                                    </span>
+                                </td>
+                                <td>
+                                    <span editable-text="influencer.influencerNickname"
+                                          e-form="study.influenceTable"
+                                          e-placeholder="Influencer Nickname">
+                                    {{ influencer.influencerNickname || '-' }}
+                                    </span>
+                                </td>
+                                <td class="text-center">
+                                    <a class="cursor-pointer fill-umred fill-hover-burntumber" ng-click="study.removeInfluencer(influencer)">
+                                        <img class="-js-svg-inline width-25 height-20" src="../img/icon/icon-trash.svg"/>
+                                    </a>
+                                </td>
+                            </tr>
+
+                            </tbody>
+
+                        </table>
+                    </div>
+
+                </form>
+
+            </div>
+
+        </div>
+    </div>
+</div>

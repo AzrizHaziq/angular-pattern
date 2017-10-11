@@ -1,0 +1,47 @@
+<div class="container-fluid bkg-gallery position-relative padding-top-15">
+    <div class="row">
+        <div class="col-xs-12 col-lg-10 col-lg-offset-1 col-lg-9 col-xl-8">
+            <h4 class="font-weight-normal">Create Study</h4>
+        </div>
+    </div>
+
+    <div class="row">
+
+        <div class="col-xs-12" ng-include="'/app/components/study/html/_partial/create-study-form.html'"></div>
+
+        <div class="col-xs-12" ng-include="'/app/components/study/html/_partial/influencers-form.html'"></div>
+
+        <div class="col-xs-12" ng-include="'/app/components/study/html/_partial/watson-form.html'"></div>
+
+    </div>
+</div>
+
+
+<div class="margin-top-15 padding-bottom-30 text-center">
+
+    <button ng-click="study.cancel()"
+            class="-js-match-width position-relative font-weight-medium cursor-pointer padding-h-15 padding-v-5 margin-h-10 margin-bottom-15 margin-bottom-sm-0 border-radius-25 border-style-solid border-width-1 border-color-umred bkg-transparent bkg-hover-umred fg-black fg-hover-white fill-transparent fill-hover-white"
+            data-matchwidth-group="createstudyaction"
+    >
+        <img class="inblock-baseline width-12 height-12 -js-svg-inline" src="../img/icon/icon-arrow-left.svg"/>
+        <span class="inblock-baseline margin-h-5">Cancel</span>
+        <span class="inblock-baseline width-12 height-12"></span>
+    </button>
+
+    <button ng-click="study.saveDraft()"
+            class="-js-match-width position-relative font-weight-medium cursor-pointer padding-h-15 padding-v-5 margin-h-10 margin-bottom-15 margin-bottom-sm-0 border-radius-25 border-style-solid border-width-1 border-color-umred bkg-transparent bkg-hover-umred fg-black fg-hover-white"
+            data-matchwidth-group="createstudyaction"
+    >
+        <span class="inblock-baseline">Save Draft</span>
+    </button>
+
+    <button wz-next
+            class="-js-match-width position-relative font-weight-medium cursor-pointer padding-h-15 padding-v-5 margin-h-10 margin-bottom-15 margin-bottom-sm-0 border-radius-25 border-style-solid border-width-1 border-color-umred bkg-transparent bkg-hover-umred fg-black fg-hover-white fill-transparent fill-hover-white"
+            data-matchwidth-group="createstudyaction"
+    >
+        <span class="inblock-baseline width-12 height-12"></span>
+        <span class="inblock-baseline margin-h-5">Next Step</span>
+        <img class="inblock-baseline width-12 height-12 -js-svg-inline" src="../img/icon/icon-arrow-right.svg"/>
+    </button>
+
+</div>

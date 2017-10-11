@@ -1,0 +1,22 @@
+<div ng-include="'/app/components/study/html/_partial/navigation-bar.html'"></div>
+
+<div class="create-study-wizard">
+
+    <wizard hide-indicators="true">
+
+        <wz-step wz-title="1-create-study" canexit="study.validateStudy">
+            <div ng-include="'/app/components/study/html/create-study-steps/1-create-study.html'"></div>
+        </wz-step>
+
+        <wz-step wz-title="2-module">
+            <div ng-include="'/app/components/study/html/create-study-steps/2-module.html'"></div>
+        </wz-step>
+
+        <wz-step wz-title="3-results" canenter="study.isAllowedToGoOtherSteps"></wz-step>
+
+        <wz-step wz-title="4-pnr-driver" canenter="study.isAllowedToGoOtherSteps"></wz-step>
+
+        <wz-step wz-title="5-output" canenter="study.isAllowedToGoOtherSteps"></wz-step>
+
+    </wizard>
+</div>

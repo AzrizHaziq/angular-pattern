@@ -1,0 +1,499 @@
+<!-- results -->
+<div class="container-fluid position-relative padding-top-15 padding-top-sm-20 bkg-gallery">
+
+    <!-- results header: -->
+    <div class="row">
+        <div class="col-xs-12 col-lg-10 col-lg-offset-1">
+            <div class="row">
+
+                <div class="col-xs-12 col-sm-3 col-md-5 inblock-mid">
+                    <h4 class="font-weight-normal">Results</h4>
+                </div>
+
+                <div class="col-xs-12 col-sm-9 col-md-7 inblock-mid text-center sm-text-right">
+
+                    <weight-percentage socialWeight="24" hexagonWeight="24"></weight-percentage>
+
+                    <div class="inblock-mid margin-v-15 margin-v-md-0 margin-left-sm-15">
+                        <button type="button"
+                                class="position-relative cursor-pointer padding-h-10 padding-v-5 border-radius-25
+                                        border-style-solid border-width-1 border-color-umred bkg-transparent
+                                        bkg-hover-umred fg-black fg-hover-white fill-black fill-hover-white">
+                            <span class="margin-h-5 inblock-baseline">Update</span>
+                        </button>
+
+                        <button type="button"
+                                class="position-relative cursor-pointer padding-h-10 padding-v-5 border-radius-25
+                                border-style-solid border-width-1 border-color-umred bkg-transparent bkg-hover-umred
+                                 fg-black fg-hover-white fill-black fill-hover-white">
+                            <span class="margin-h-5 inblock-baseline">Save</span>
+                        </button>
+                    </div>
+
+                    <div class="inblock-mid margin-v-15 margin-v-md-0 margin-left-sm-15">
+                        <button type="button" ng-click="study.exportResult()"
+                                class="position-relative font-weight-medium cursor-pointer padding-h-10 padding-v-5
+                                border-radius-25 border-style-solid border-width-1 border-color-umred bkg-transparent
+                                bkg-hover-umred fg-black fg-hover-white fill-black fill-hover-white">
+
+                            <span class="margin-h-5 inblock-baseline">Export</span>
+                            <img class="width-15 height-15 inblock-baseline -js-svg-inline" src="../img/icon/icon-export.svg"/>
+
+                        </button>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+        <div class="col-xs-12 col-lg-10 col-lg-offset-1">
+
+            <div
+                class="position-relative overflow-auto margin-v-15 padding-right-10 -js-um-scrollbar"
+                data-mcs-axis="yx"
+                data-mcs-theme="minimal"
+                data-content-height=".table-result thead tr, .table-result tbody tr:nth-child(-n+10)"
+                id="dynaheight"
+            >
+                <table class="table-result font-size-small width-full text-nowrap margin-bottom-15 -js-observe-mutate">
+                    <thead>
+                    <tr>
+                        <th class="border-color-silver">
+                            <span class="th-label">Influencer</span>
+                        </th>
+                        <th class="border-color-silver text-center sortable">
+                            <sort-icon title="IPI Rank" class="th-label" sort="'asc'"></sort-icon>
+                        </th>
+
+                        <th class="border-color-silver text-center sortable">
+                            <span class="th-label fg-umred">Period 1<br/>Mentions</span>
+                            <sort-icon sort="'asc'"></sort-icon>
+                        </th>
+
+                        <th class="border-color-silver text-center sortable">
+                            <span class="th-label fg-umred">Period 2<br/>Mentions</span>
+                            <sort-icon sort="'asc'"></sort-icon>
+                        </th>
+
+                        <th class="border-color-silver text-center sortable">
+                            <span class="th-label fg-umred">Social Heat</span>
+                            <sort-icon sort="'asc'"></sort-icon>
+                        </th>
+
+                        <th class="border-color-silver text-center sortable fill-lochmara">
+                            <span class="th-label"><a title="Twitter"><img class="width-25 height-25 -js-inline-svg" src="../img/logo/logo-twitter.svg"/></a></span>
+                            <sort-icon sort="'asc'"></sort-icon>
+                        </th>
+
+                        <th class="border-color-silver text-center sortable fill-lochmara">
+                            <span class="th-label"><a title="Instagram"><img class="width-25 height-25 -js-inline-svg" src="../img/logo/logo-instagram.svg"/></a></span>
+                            <sort-icon sort="'asc'"></sort-icon>
+                        </th>
+
+                        <th class="border-color-silver text-center sortable fill-lochmara">
+                            <span class="th-label"><a title="Facebook"><img class="width-25 height-25 -js-inline-svg" src="../img/logo/logo-fb.svg"/></a></span>
+                            <sort-icon sort="'asc'"></sort-icon>
+                        </th>
+
+                        <th class="border-color-silver text-center sortable fill-lochmara">
+                            <span class="th-label"><a title="YouTube"><img class="width-25 height-25 -js-inline-svg" src="../img/logo/logo-youtube.svg"/></a></span>
+                            <sort-icon sort="'asc'"></sort-icon>
+                        </th>
+
+                        <th class="border-color-silver text-center sortable fill-lochmara">
+                            <span class="th-label"><a title="Pinterest"><img class="width-25 height-25 -js-inline-svg" src="../img/logo/logo-pinterest.svg"/></a></span>
+                            <sort-icon sort="'asc'"></sort-icon>
+                        </th>
+
+                        <th class="border-color-silver text-center sortable fill-lochmara">
+                            <span class="th-label"><a title="Twitch"><img class="width-25 height-25 -js-inline-svg" src="../img/logo/logo-twitch.svg"/></a></span>
+                            <sort-icon sort="'asc'"></sort-icon>
+                        </th>
+
+                        <th class="border-color-silver text-center sortable fill-lochmara">
+                            <span class="th-label"><a title="Crimson Hexagon"><img class="width-25 height-25 -js-inline-svg" src="../img/logo/logo-crimson.svg"/></a></span>
+                            <sort-icon sort="'asc'"></sort-icon>
+                        </th>
+
+                        <th class="border-color-silver text-center sortable fill-lochmara">
+                            <span class="th-label"><a title="Watson Personality Insights"><img class="width-25 height-25 -js-inline-svg" src="../img/logo/logo-watson.svg"/></a></span>
+                            <sort-icon sort="'asc'"></sort-icon>
+                        </th>
+
+                        <th class="border-color-silver text-center sortable">
+                            <span class="th-label">Total<br/>Audience</span>
+                            <sort-icon sort="'asc'"></sort-icon>
+                        </th>
+
+                        <th class="border-color-silver text-center sortable">
+                            <span class="th-label">IPI</span>
+                            <sort-icon sort="'asc'"></sort-icon>
+                        </th>
+                    </tr>
+                    </thead>
+
+                    <tbody>
+                    <tr class="">
+                        <td class="border-color-silver">
+                            <span class="td-content">Alan Ulrich</span></td>
+                        <td class="border-color-silver text-center">
+                            <span class="td-content">1</span></td>
+                        <td class="border-color-silver text-center">
+                            <span class="td-content">228,737</span></td>
+                        <td class="border-color-silver text-center">
+                            <span class="td-content">7,584,458</span></td>
+                        <td class="border-color-silver text-center">
+                            <span class="td-content">26%</span></td>
+                        <td class="border-color-silver text-center">
+                            <span class="td-content">2,014,419</span></td>
+                        <td class="border-color-silver text-center">
+                            <span class="td-content">6,866,401</span></td>
+                        <td class="border-color-silver text-center">
+                            <span class="td-content">7,088,919</span></td>
+                        <td class="border-color-silver text-center">
+                            <span class="td-content">9,194,111</span></td>
+                        <td class="border-color-silver text-center">
+                            <span class="td-content">9,903,492</span></td>
+                        <td class="border-color-silver text-center">
+                            <span class="td-content">4,543,041</span></td>
+                        <td class="border-color-silver text-center">
+                            <span class="td-content">5,874,048</span></td>
+                        <td class="border-color-silver text-center">
+                            <span class="td-content">7,274,282</span></td>
+                        <td class="border-color-silver text-center">
+                            <span class="td-content">1,975,702</span></td>
+                        <td class="border-color-silver text-center">
+                            <span class="td-content">8,694,250</span></td>
+                    </tr>
+                    <tr class="">
+                        <td class="border-color-silver">
+                            <span class="td-content">Gerald Thompson</span></td>
+                        <td class="border-color-silver text-center">
+                            <span class="td-content">2</span></td>
+                        <td class="border-color-silver text-center">
+                            <span class="td-content">2,900,027</span></td>
+                        <td class="border-color-silver text-center">
+                            <span class="td-content">9,104,243</span></td>
+                        <td class="border-color-silver text-center">
+                            <span class="td-content">873%</span></td>
+                        <td class="border-color-silver text-center">
+                            <span class="td-content">4,739,947</span></td>
+                        <td class="border-color-silver text-center">
+                            <span class="td-content">9,203,252</span></td>
+                        <td class="border-color-silver text-center">
+                            <span class="td-content">772,816</span></td>
+                        <td class="border-color-silver text-center">
+                            <span class="td-content">2,035,186</span></td>
+                        <td class="border-color-silver text-center">
+                            <span class="td-content">3,341,445</span></td>
+                        <td class="border-color-silver text-center">
+                            <span class="td-content">7,969,117</span></td>
+                        <td class="border-color-silver text-center">
+                            <span class="td-content">7,196,627</span></td>
+                        <td class="border-color-silver text-center">
+                            <span class="td-content">5,478,487</span></td>
+                        <td class="border-color-silver text-center">
+                            <span class="td-content">8,657,953</span></td>
+                        <td class="border-color-silver text-center">
+                            <span class="td-content">11,838</span></td>
+                    </tr>
+                    <tr class="">
+                        <td class="border-color-silver">
+                            <span class="td-content">Alan Zemeckis</span></td>
+                        <td class="border-color-silver text-center">
+                            <span class="td-content">3</span></td>
+                        <td class="border-color-silver text-center">
+                            <span class="td-content">757,773</span></td>
+                        <td class="border-color-silver text-center">
+                            <span class="td-content">7,393,444</span></td>
+                        <td class="border-color-silver text-center">
+                            <span class="td-content">724%</span></td>
+                        <td class="border-color-silver text-center">
+                            <span class="td-content">1,574,134</span></td>
+                        <td class="border-color-silver text-center">
+                            <span class="td-content">3,261,805</span></td>
+                        <td class="border-color-silver text-center">
+                            <span class="td-content">7,592,169</span></td>
+                        <td class="border-color-silver text-center">
+                            <span class="td-content">5,388,853</span></td>
+                        <td class="border-color-silver text-center">
+                            <span class="td-content">923,087</span></td>
+                        <td class="border-color-silver text-center">
+                            <span class="td-content">8,634,291</span></td>
+                        <td class="border-color-silver text-center">
+                            <span class="td-content">2,569,233</span></td>
+                        <td class="border-color-silver text-center">
+                            <span class="td-content">4,429,211</span></td>
+                        <td class="border-color-silver text-center">
+                            <span class="td-content">2,799,508</span></td>
+                        <td class="border-color-silver text-center">
+                            <span class="td-content">5,169,123</span></td>
+                    </tr>
+                    <tr class="">
+                        <td class="border-color-silver">
+                            <span class="td-content">Edward Yoda</span></td>
+                        <td class="border-color-silver text-center">
+                            <span class="td-content">4</span></td>
+                        <td class="border-color-silver text-center">
+                            <span class="td-content">8,764,628</span></td>
+                        <td class="border-color-silver text-center">
+                            <span class="td-content">1,125,553</span></td>
+                        <td class="border-color-silver text-center">
+                            <span class="td-content">150%</span></td>
+                        <td class="border-color-silver text-center">
+                            <span class="td-content">9,031,988</span></td>
+                        <td class="border-color-silver text-center">
+                            <span class="td-content">2,382,973</span></td>
+                        <td class="border-color-silver text-center">
+                            <span class="td-content">3,422,386</span></td>
+                        <td class="border-color-silver text-center">
+                            <span class="td-content">313,132</span></td>
+                        <td class="border-color-silver text-center">
+                            <span class="td-content">7,259,619</span></td>
+                        <td class="border-color-silver text-center">
+                            <span class="td-content">7,931,132</span></td>
+                        <td class="border-color-silver text-center">
+                            <span class="td-content">6,247,211</span></td>
+                        <td class="border-color-silver text-center">
+                            <span class="td-content">2,292,966</span></td>
+                        <td class="border-color-silver text-center">
+                            <span class="td-content">2,928,861</span></td>
+                        <td class="border-color-silver text-center">
+                            <span class="td-content">3,342,006</span></td>
+                    </tr>
+                    <tr class="">
+                        <td class="border-color-silver">
+                            <span class="td-content">Alan Witherspoon</span></td>
+                        <td class="border-color-silver text-center">
+                            <span class="td-content">5</span></td>
+                        <td class="border-color-silver text-center">
+                            <span class="td-content">5,107,329</span></td>
+                        <td class="border-color-silver text-center">
+                            <span class="td-content">8,163,072</span></td>
+                        <td class="border-color-silver text-center">
+                            <span class="td-content">293%</span></td>
+                        <td class="border-color-silver text-center">
+                            <span class="td-content">9,377,310</span></td>
+                        <td class="border-color-silver text-center">
+                            <span class="td-content">5,473,662</span></td>
+                        <td class="border-color-silver text-center">
+                            <span class="td-content">8,854,179</span></td>
+                        <td class="border-color-silver text-center">
+                            <span class="td-content">6,374,960</span></td>
+                        <td class="border-color-silver text-center">
+                            <span class="td-content">8,186,374</span></td>
+                        <td class="border-color-silver text-center">
+                            <span class="td-content">6,849,970</span></td>
+                        <td class="border-color-silver text-center">
+                            <span class="td-content">8,746,143</span></td>
+                        <td class="border-color-silver text-center">
+                            <span class="td-content">8,688,280</span></td>
+                        <td class="border-color-silver text-center">
+                            <span class="td-content">5,325,645</span></td>
+                        <td class="border-color-silver text-center">
+                            <span class="td-content">1,988,508</span></td>
+                    </tr>
+                    <tr class="">
+                        <td class="border-color-silver">
+                            &nbsp;
+                        </td>
+                        <td class="border-color-silver text-center">
+                        </td>
+                        <td class="border-color-silver text-center">
+                        </td>
+                        <td class="border-color-silver text-center">
+                        </td>
+                        <td class="border-color-silver text-center">
+                        </td>
+                        <td class="border-color-silver text-center">
+                        </td>
+                        <td class="border-color-silver text-center">
+                        </td>
+                        <td class="border-color-silver text-center">
+                        </td>
+                        <td class="border-color-silver text-center">
+                        </td>
+                        <td class="border-color-silver text-center">
+                        </td>
+                        <td class="border-color-silver text-center">
+                        </td>
+                        <td class="border-color-silver text-center">
+                        </td>
+                        <td class="border-color-silver text-center">
+                        </td>
+                        <td class="border-color-silver text-center">
+                        </td>
+                        <td class="border-color-silver text-center">
+                        </td>
+                    </tr>
+                    <tr class="">
+                        <td class="border-color-silver">
+                            &nbsp;
+                        </td>
+                        <td class="border-color-silver text-center">
+                        </td>
+                        <td class="border-color-silver text-center">
+                        </td>
+                        <td class="border-color-silver text-center">
+                        </td>
+                        <td class="border-color-silver text-center">
+                        </td>
+                        <td class="border-color-silver text-center">
+                        </td>
+                        <td class="border-color-silver text-center">
+                        </td>
+                        <td class="border-color-silver text-center">
+                        </td>
+                        <td class="border-color-silver text-center">
+                        </td>
+                        <td class="border-color-silver text-center">
+                        </td>
+                        <td class="border-color-silver text-center">
+                        </td>
+                        <td class="border-color-silver text-center">
+                        </td>
+                        <td class="border-color-silver text-center">
+                        </td>
+                        <td class="border-color-silver text-center">
+                        </td>
+                        <td class="border-color-silver text-center">
+                        </td>
+                    </tr>
+                    <tr class="">
+                        <td class="border-color-silver">
+                            &nbsp;
+                        </td>
+                        <td class="border-color-silver text-center">
+                        </td>
+                        <td class="border-color-silver text-center">
+                        </td>
+                        <td class="border-color-silver text-center">
+                        </td>
+                        <td class="border-color-silver text-center">
+                        </td>
+                        <td class="border-color-silver text-center">
+                        </td>
+                        <td class="border-color-silver text-center">
+                        </td>
+                        <td class="border-color-silver text-center">
+                        </td>
+                        <td class="border-color-silver text-center">
+                        </td>
+                        <td class="border-color-silver text-center">
+                        </td>
+                        <td class="border-color-silver text-center">
+                        </td>
+                        <td class="border-color-silver text-center">
+                        </td>
+                        <td class="border-color-silver text-center">
+                        </td>
+                        <td class="border-color-silver text-center">
+                        </td>
+                        <td class="border-color-silver text-center">
+                        </td>
+                    </tr>
+                    <tr class="">
+                        <td class="border-color-silver">
+                            &nbsp;
+                        </td>
+                        <td class="border-color-silver text-center">
+                        </td>
+                        <td class="border-color-silver text-center">
+                        </td>
+                        <td class="border-color-silver text-center">
+                        </td>
+                        <td class="border-color-silver text-center">
+                        </td>
+                        <td class="border-color-silver text-center">
+                        </td>
+                        <td class="border-color-silver text-center">
+                        </td>
+                        <td class="border-color-silver text-center">
+                        </td>
+                        <td class="border-color-silver text-center">
+                        </td>
+                        <td class="border-color-silver text-center">
+                        </td>
+                        <td class="border-color-silver text-center">
+                        </td>
+                        <td class="border-color-silver text-center">
+                        </td>
+                        <td class="border-color-silver text-center">
+                        </td>
+                        <td class="border-color-silver text-center">
+                        </td>
+                        <td class="border-color-silver text-center">
+                        </td>
+                    </tr>
+                    <tr class="">
+                        <td class="border-color-silver">
+                            &nbsp;
+                        </td>
+                        <td class="border-color-silver text-center">
+                        </td>
+                        <td class="border-color-silver text-center">
+                        </td>
+                        <td class="border-color-silver text-center">
+                        </td>
+                        <td class="border-color-silver text-center">
+                        </td>
+                        <td class="border-color-silver text-center">
+                        </td>
+                        <td class="border-color-silver text-center">
+                        </td>
+                        <td class="border-color-silver text-center">
+                        </td>
+                        <td class="border-color-silver text-center">
+                        </td>
+                        <td class="border-color-silver text-center">
+                        </td>
+                        <td class="border-color-silver text-center">
+                        </td>
+                        <td class="border-color-silver text-center">
+                        </td>
+                        <td class="border-color-silver text-center">
+                        </td>
+                        <td class="border-color-silver text-center">
+                        </td>
+                        <td class="border-color-silver text-center">
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+<!-- action: -->
+<div class="margin-top-20 margin-bottom-30 text-center">
+
+    <button type="button" data-matchwidth-group="resultaction"
+            class="-js-match-width position-relative
+            font-weight-medium cursor-pointer padding-h-10 padding-v-5 margin-h-10 margin-bottom-15 border-radius-25
+            border-style-solid border-width-1 border-color-umred bkg-transparent bkg-hover-umred fg-black fg-hover-white
+            fill-transparent fill-hover-white">
+
+        <img class="width-12 height-12 inblock-baseline -js-svg-inline" src="../img/icon/icon-arrow-left.svg"/>
+        <span class="margin-h-5 inblock-baseline">Back</span>
+        <span class="width-12 height-12 inblock-baseline"></span>
+
+    </button>
+
+    <div class="inblock-mid hidden-xs width-sm-30">&nbsp;</div>
+
+    <button type="button" data-matchwidth-group="resultaction"
+            class="-js-match-width position-relative font-weight-medium cursor-pointer padding-h-10 padding-v-5
+            margin-h-10 margin-bottom-15 border-radius-25 border-style-solid border-width-1 border-color-umred
+            bkg-transparent bkg-hover-umred fg-black fg-hover-white fill-transparent fill-hover-white">
+
+        <span class="width-12 height-12 inblock-baseline"></span>
+        <span class="margin-h-5 inblock-baseline">Next Step</span>
+        <img class="width-12 height-12 inblock-baseline -js-svg-inline" src="../img/icon/icon-arrow-right.svg"/>
+
+    </button>
+
+</div>

@@ -1,0 +1,116 @@
+<div class="container-fluid position-relative padding-top-15 padding-top-sm-20 padding-top-lg-30 bkg-gallery">
+    <div class="row">
+        <div class="col-xs-12 col-md-offset-1">
+            <h4 class="font-weight-normal">View Study</h4>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row margin-all-20">
+
+        <div class="form-horizontal" novalidate="">
+            <div class="form-group">
+                <label class="col-md-2 control-label">Study Name:</label>
+                <div class="col-md-10">
+                    <span>{{:: study.state.name }}</span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-2 control-label">Countries:</label>
+                <div class="col-md-10">
+                    <span ng-repeat="country in study.state.countries track by $index">
+                        {{:: study.getCountryName(country) }} {{ $last ? '' : ' , ' }}
+                    </span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-2 control-label">Languages:</label>
+                <div class="col-md-10">
+                    <span ng-repeat="language in study.state.languages track by $index">
+                        {{:: study.getLanguageName(language) }} {{ $last ? '' : ' , ' }}
+                    </span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-2 control-label">Influencers:</label>
+                <div class="col-md-10">
+
+                    <table class="table um-table table-hover table-condensed">
+
+                        <thead>
+                        <tr>
+                            <th class="border-partial-sm-right border-color-white">Twitter handle</th>
+                            <th class="border-partial-sm-right border-color-white">Influencer name</th>
+                            <th class="border-partial-sm-right border-color-white">Influencer nickname</th>
+                        </tr>
+                        </thead>
+
+                        <tr ng-repeat="influencer in study.state.influencers">
+                            <td><span>{{:: influencer.influencerTwitterHandle }}</span></td>
+                            <td><span>{{:: influencer.influencerName }}</span></td>
+                            <td><span>{{:: influencer.influencerNickname }}</span></td>
+                        </tr>
+                    </table>
+
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-2 control-label">Keywords:</label>
+                <div class="col-md-10">
+                    <span ng-repeat="keyword in study.state.keywords track by $index">
+                        <span>{{:: keyword }} {{ $last ? '' : ' , ' }}</span>
+                    </span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-2 control-label">Date Range:</label>
+
+                <div class="col-md-10">
+                    <div class="col-xs-12 col-sm-6 padding-right-sm-0">
+                        <div class="form-group">
+                            <div class="padding-h-15 padding-v-5 margin-bottom-10 bkg-umred fg-white border-none border-partial-sm-right border-color-white">
+                                <label class="margin-v-0 font-weight-medium">Period 1 Selection</label>
+                            </div>
+                            <div class="input-group bkg-white border-radius-25 margin-right-sm-5">
+                                <div class="input-group-addon border-none bkg-transparent padding-v-0 padding-right-5">
+                                    <img class="icon-datepicker" src="../img/icon/icon-datepicker.svg"/>
+                                </div>
+                                {{:: study.state.period1StartDate | date:'M/d/y' : 'UTC' }} - {{:: study.state.period1EndDate | date:'M/d/y' : 'UTC' }}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-xs-12 col-sm-6 padding-left-sm-0">
+                        <div class="form-group">
+                            <div class="padding-h-15 padding-v-5 margin-bottom-10 bkg-umred fg-white">
+                                <label class="margin-v-0 font-weight-medium">Period 2 Selection</label>
+                            </div>
+                            <div class="input-group bkg-white border-radius-25 margin-left-sm-5">
+                                <div class="input-group-addon border-none bkg-transparent padding-v-0 padding-right-5">
+                                    <img class="icon-datepicker" src="../img/icon/icon-datepicker.svg"/>
+                                </div>
+                                {{:: study.state.period2StartDate | date:'M/d/y' : 'UTC' }} - {{:: study.state.period2EndDate | date:'M/d/y' : 'UTC' }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <div class="buttons">
+                        <a ui-sref="app.study" title="Return To Previous Page" class="btn btn-default btn-sm">Back</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,28 @@
+<div ng-include="'/app/components/study/html/_partial/navigation-bar.html'"></div>
+
+<div class="create-study-wizard -js-observe-mutate">
+
+    <wizard hide-indicators="true">
+
+        <wz-step wz-title="1-create-study" canexit="study.validateStudy">
+            <div ng-include="'/app/components/study/html/create-study-steps/1-create-study.html'"></div>
+        </wz-step>
+
+        <wz-step wz-title="2-module">
+            <div ng-include="'/app/components/study/html/create-study-steps/2-module.html'"></div>
+        </wz-step>
+
+        <wz-step wz-title="3-results" canenter="study.isUserAllowedToNavigateTo">
+            <div ng-include="'/app/components/study/html/create-study-steps/3-results.html'"></div>
+        </wz-step>
+
+        <wz-step wz-title="4-pnr-driver" canenter="study.isUserAllowedToNavigateTo">
+            <div ng-include="'/app/components/study/html/create-study-steps/4-personality-driver.html'"></div>
+        </wz-step>
+
+        <wz-step wz-title="5-output" canenter="study.isUserAllowedToNavigateTo">
+            <div ng-include="'/app/components/study/html/create-study-steps/5-output.html'"></div>
+        </wz-step>
+
+    </wizard>
+</div>

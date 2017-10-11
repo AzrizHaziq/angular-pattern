@@ -1,0 +1,52 @@
+<div class="inblock-top width-14w min-width-170 padding-left-15 padding-left-xl-30 editable-wrap-display-block editable-controls-display-block editable-input-transparent"
+     ng-repeat="trait in study.state.watson.traits track by $index"
+     ng-if="$index % 2 === 0">
+
+    <!-- odd trait box -->
+    <div class="box-trait box-{{:: $index + 1 }} margin-bottom-15 margin-bottom-xl-30">
+        <div class="border-radius-5 bkg-white fg-black overflow-hidden">
+
+            <div class="header-trait box-{{:: $index + 1 }} position-relative fg-white font-weight-medium cursor-pointer text-center overflow-ellipsis"
+                 editable-text="study.state.watson.traits[$index].title"
+                 e-placeholder="Traits" e-maxlength="50" buttons="no"
+                 ng-mouseover="showEdit = 1;" ng-mouseleave="showEdit = 0;"
+                 tooltip-placement="bottom" uib-tooltip="{{ study.state.watson.traits[$index].title }}"
+            >
+                <span ng-show="showEdit"><i class="fa fa-pencil fa-rotate-270" aria-hidden="true"></i></span>
+                <span ng-hide="showEdit">{{:: $index + 1 | twoDigitOnly }}</span>
+
+                <span class="label-trait">
+                    {{ study.state.watson.traits[$index].title }}
+                </span>
+
+            </div>
+
+            <traits-item items="study.state.watson.traits[$index].personalityInsightIds"></traits-item>
+
+        </div>
+    </div>
+
+    <!-- even trait box -->
+    <div class="box-trait box-{{:: $index + 2 }} margin-bottom-15 margin-bottom-xl-30">
+        <div class="border-radius-5 bkg-white fg-black overflow-hidden">
+
+            <div class="header-trait box-{{:: $index + 2 }} position-relative fg-white font-weight-medium cursor-pointer text-center overflow-ellipsis"
+                 editable-text="study.state.watson.traits[$index + 1].title"
+                 e-placeholder="Traits" e-maxlength="50" buttons="no"
+                 ng-mouseover="showEdit = 1;" ng-mouseleave="showEdit = 0;"
+                 tooltip-placement="bottom" uib-tooltip="{{ study.state.watson.traits[$index + 1].title }}"
+            >
+                <span ng-show="showEdit"><i class="fa fa-pencil  fa-rotate-270" aria-hidden="true"></i></span>
+                <span ng-hide="showEdit">{{:: $index + 2 | twoDigitOnly }}</span>
+
+                <span class="label-trait">
+                    {{ study.state.watson.traits[$index + 1].title || 'empty' }}
+                </span>
+
+            </div>
+
+            <traits-item items="study.state.watson.traits[$index + 1].personalityInsightIds"></traits-item>
+
+        </div>
+    </div>
+</div>

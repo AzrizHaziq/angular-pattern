@@ -1,0 +1,117 @@
+<div class="row">
+    <div class="col-xs-12 col-lg-10 col-lg-offset-1 col-lg-9 col-xl-8">
+        <hr class="border-color-silver margin-bottom-10"/>
+        <div class="margin-bottom-15">
+            <a data-toggle="collapse" data-target="#section-form-watson" aria-expanded="false" aria-controls="section-form-watson" class="cursor-pointer">
+                <div class="inblock-mid margin-right-5 border-round border-style-solid border-width-1 border-color-umred fill-umred fill-hover-white bkg-hover-umred">
+                    <img class="width-30 height-30 collapsed-visible -js-svg-inline" src="../img/icon/icon-add.svg"/>
+                    <img class="width-30 height-30 expanded-visible -js-svg-inline" src="../img/icon/icon-subtract.svg"/>
+                </div>
+                <span class="inblock-mid fg-black font-size-large font-weight-medium">Watson</span>
+                <span class="inblock-mid font-size-medium margin-right-5 border-right-style-solid border-right-width-1 border-color-dovegrey">&nbsp;</span>
+                <span class="inblock-mid fg-dovegrey text-uppercase">Personality Selector</span>
+            </a>
+        </div>
+    </div>
+</div>
+
+<!-- watson form start -->
+<div id="section-form-watson" class="row bkg-dovegrey fg-white has-mcs collapse">
+    <div class="col-xs-12 col-lg-10 col-lg-offset-1 padding-v-15 padding-v-sm-30">
+        <div class="row">
+
+            <!-- personality insights left-side -->
+            <div class="col-xs-12 col-sm-4 col-md-3 col-xl-20pct padding-right-xl-30">
+                <div class="border-radius-5 bkg-white overflow-hidden margin-bottom-15 margin-bottom-sm-30 max-width-md-300">
+
+                    <div class="padding-v-10 padding-h-10 bkg-umred">
+                        <img class="width-30 inblock-mid" src="../img/icon/icon-personalityinsights.svg"/>
+                        <span class="inblock-mid font-weight-medium">Personality Insights</span>
+                    </div>
+
+                    <div class="overflow-auto height-300 -js-um-scrollbar">
+
+                        <div ng-show="study.state.watson.meta.isErrorPersonalityInsightItems"
+                             class="fg-umred font-size-tiny text-center margin-top-10">
+                            Error fetching Personality Insights
+                        </div>
+
+                        <div ng-hide="study.state.watson.meta.isErrorPersonalityInsightItems"
+                             class="border-bottom-style-solid border-bottom-width-1 border-color-gallery bkg-white fg-dovegrey font-weight-medium -js-collapse-local"
+                             ng-repeat="personalityInsight in study.state.watson.personalityInsight">
+
+                            <div class="padding-v-10 padding-h-20 cursor-pointer overflow-ellipsis">
+                                <span title="{{:: personalityInsight.trait }}">{{:: personalityInsight.trait }}</span>
+                            </div>
+
+                            <div class="collapse-local-target">
+                                <div class="padding-h-10 bkg-gallery">
+
+                                    <div class="row padding-h-25">
+                                        <div ng-click="study.toggleTraitToTraitBoxes(0, personalityInsight.id)"
+                                             ng-class="study.isTraitExist(0, personalityInsight.id) ? 'active' : ''"
+                                             class="blob-personality box-1">01
+                                        </div>
+
+                                        <div ng-click="study.toggleTraitToTraitBoxes(2, personalityInsight.id)"
+                                             ng-class="study.isTraitExist(2, personalityInsight.id) ? 'active' : ''"
+                                             class="blob-personality box-3">03
+                                        </div>
+
+                                        <div ng-click="study.toggleTraitToTraitBoxes(4, personalityInsight.id)"
+                                             ng-class="study.isTraitExist(4, personalityInsight.id) ? 'active' : ''"
+                                             class="blob-personality box-5">05
+                                        </div>
+
+                                        <div ng-click="study.toggleTraitToTraitBoxes(6, personalityInsight.id)"
+                                             ng-class="study.isTraitExist(6, personalityInsight.id) ? 'active' : ''"
+                                             class="blob-personality box-7">07
+                                        </div>
+
+                                    </div>
+
+                                    <div class="row padding-h-25">
+                                        <div ng-click="study.toggleTraitToTraitBoxes(1, personalityInsight.id)"
+                                             ng-class="study.isTraitExist(1, personalityInsight.id) ? 'active' : ''"
+                                             class="blob-personality box-2">02
+                                        </div>
+
+                                        <div ng-click="study.toggleTraitToTraitBoxes(3, personalityInsight.id)"
+                                             ng-class="study.isTraitExist(3, personalityInsight.id) ? 'active' : ''"
+                                             class="blob-personality box-4">04
+                                        </div>
+
+                                        <div ng-click="study.toggleTraitToTraitBoxes(5, personalityInsight.id)"
+                                             ng-class="study.isTraitExist(5, personalityInsight.id) ? 'active' : ''"
+                                             class="blob-personality box-6">06
+                                        </div>
+
+                                        <div ng-click="study.toggleTraitToTraitBoxes(7, personalityInsight.id)"
+                                             ng-class="study.isTraitExist(7, personalityInsight.id) ? 'active' : ''"
+                                             class="blob-personality box-8">08
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- /traits right-side -->
+            <div 
+                class="col-xs-12 col-sm-8 col-md-9 col-xl-80pct -js-um-scrollbar" 
+                data-mcs-axis="x" 
+                data-scrollbar-res="xs,sm,md"
+            >
+                <div class="text-nowrap" ng-include="'/app/components/study/html/_partial/watson-traits.html'"></div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<!-- /watson form end -->

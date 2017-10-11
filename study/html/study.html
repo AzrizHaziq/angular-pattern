@@ -1,0 +1,223 @@
+<div class="container-fluid position-relative padding-v-15 padding-v-sm-20 border-bottom-style-solid border-color-gallery border-width-2">
+    <div class="row">
+
+        <div class="col-xs-12 col-sm-5 col-lg-4 col-lg-offset-1 inblock-mid">
+            <h4 class="font-weight-normal">Welcome Back!</h4>
+        </div>
+
+        <div class="col-xs-12 col-sm-7 col-lg-6 inblock-mid sm-text-right">
+
+            <!-- search -->
+            <form novalidate class="form-inline sm-pull-right" ng-submit="study.getStudies()">
+
+                <div class="inblock-mid margin-bottom-10 margin-v-15 margin-v-sm-0">
+                    <input placeholder="Keywords..."
+                           ng-model="study.state.meta._q"
+                           class="border-radius-25 padding-v-5 padding-h-15 bkg-gallery border-style-solid border-width-1 placeholder-dovegrey border-color-silver">
+                </div>
+
+                <div class="inblock-mid margin-bottom-10 margin-v-15 margin-v-sm-0 margin-left-sm-15 pull-right">
+                    <button type="submit" class="border-radius-25 border-style-solid border-color-transparent border-width-1 border-hover-color-umred padding-v-5 padding-h-20 fg-white fg-hover-umred bkg-umred bkg-hover-white">
+                        Search
+                    </button>
+                </div>
+
+                <div class="inblock-mid width-full width-sm-auto margin-left-sm-15">
+                    <div ui-sref="app.study-create" title="New Study"
+                         class="inblock-baseline cursor-pointer border-round border-style-solid border-width-2 border-color-transparent border-hover-color-umred fill-white fill-hover-umred bkg-umred bkg-hover-white">
+                        <img class="width-25 height-25 -js-svg-inline" src="../img/icon/icon-add.svg"/>
+                    </div>
+
+                    <div ng-click="study.reset()" title="Refresh"
+                         class="inblock-baseline cursor-pointer border-round border-style-solid border-width-2 border-color-umred fill-black fill-hover-white bkg-white bkg-hover-umred">
+                        <img class="width-15 height-15 margin-all-5 -js-svg-inline" src="../img/icon/icon-refresh.svg"/>
+                    </div>
+                </div>
+
+            </form>
+
+        </div>
+    </div>
+</div>
+
+<!-- Result -->
+<div class="container-fluid position-relative padding-v-5 padding-v-sm-10">
+    <div class="row">
+        <div class="col-xs-12 col-lg-10 col-lg-offset-1">
+
+            <span class="font-size-medium font-weight-bold">Results</span>
+            &nbsp;
+            <br class="hidden visible-xs">
+            <span class="font-size-small">{{ study.getResultNumbering() }}</span>
+        </div>
+    </div>
+</div>
+
+<!-- studies list -->
+<div class="container-fluid position-relative padding-v-5 padding-v-sm-10 border-bottom-style-solid border-color-gallery border-width-2">
+    <div class="row">
+        <div class="col-xs-12 col-lg-10 col-lg-offset-1">
+
+            <div class="wrapper-list-studies overflow-auto -js-um-scrollbar" data-mcs-axis="x">
+                <table class="width-full text-nowrap margin-bottom-5">
+                    <thead class="border-bottom-style-solid border-bottom-width-3 font-size-small border-color-black">
+                    <tr>
+                        <th class="padding-v-5 border-partial-double-right border-color-silver font-weight-medium sortable"
+                            ng-click="study.reorder('name')">
+                            <sort-icon title="Study name" sort="study.state.column.name"></sort-icon>
+                        </th>
+
+                        <th class="padding-v-5 border-partial-double-right border-color-silver font-weight-medium text-center sortable"
+                            ng-click="study.reorder('period1StartDate')">
+                            <sort-icon title="Period 1" sort="study.state.column.period1StartDate"></sort-icon>
+                        </th>
+
+                        <th class="padding-v-5 border-partial-double-right border-color-silver font-weight-medium text-center sortable"
+                            ng-click="study.reorder('period2StartDate')">
+                            <sort-icon title="Period 2" sort="study.state.column.period2StartDate"></sort-icon>
+                        </th>
+
+                        <th class="padding-v-5 border-partial-double-right border-color-silver font-weight-medium text-center sortable"
+                            ng-click="study.reorder('influencers')">
+                            <sort-icon title="# of Influencers" sort="study.state.column.influencers"></sort-icon>
+                        </th>
+
+                        <th class="padding-v-5 border-partial-double-right border-color-silver font-weight-medium text-center sortable"
+                            ng-click="study.reorder('keywords')">
+                            <sort-icon title="Keywords" sort="study.state.column.keywords"></sort-icon>
+                        </th>
+
+                        <th class="padding-v-5 border-partial-double-right border-color-silver font-weight-medium text-center sortable"
+                            ng-click="study.reorder('createdBy')">
+                            <sort-icon title="Created by" sort="study.state.column.createdBy"></sort-icon>
+                        </th>
+
+                        <th class="padding-v-5 border-partial-double-right border-color-silver font-weight-medium text-center sortable"
+                            ng-click="study.reorder('createdDate')">
+                            <sort-icon title="Time Created (UTC)" sort="study.state.column.createdDate"></sort-icon>
+                        </th>
+
+                        <th class="padding-v-5 border-partial-double-right border-color-silver font-weight-medium text-center sortable"
+                            ng-click="study.reorder('status')">
+                            <sort-icon title="Submission Status" sort="study.state.column.status"></sort-icon>
+                        </th>
+
+                        <th class="padding-v-5 padding-h-15 font-weight-medium text-center">
+                            <span>Action</span>
+                        </th>
+                    </tr>
+                    </thead>
+
+                    <tbody class="bkg-striped-odd-gallery font-size-small">
+
+                    <tr ng-if="study.state.studies.meta.responseItems === 0">
+                        <td class="padding-v-15 text-center" colspan="9">No Result</td>
+                    </tr>
+
+                    <tr id="study-{{:: studyItem.id }}"
+                        ng-if="study.state.studies.meta.responseItems !== 0"
+                        ng-repeat="studyItem in study.state.studies.items; track by studyItem.id"
+                        class="border-bottom-style-solid border-bottom-width-1 border-color-silver">
+
+                        <td class="padding-h-10">
+                            <a ng-click="study.navigateStudyTo(studyItem)" class="fg-allports fg-hover-umred text-underline">
+                                {{:: studyItem.name }}
+                            </a>
+                        </td>
+                        <td class="padding-h-10 text-center">
+                            {{:: studyItem.period1StartDate | date:'M/d/y' : 'UTC' }} - <br/>
+                            {{:: studyItem.period1EndDate | date:'M/d/y' : 'UTC' }}
+                        </td>
+                        <td class="padding-h-10 text-center">
+                            {{:: studyItem.period2StartDate | date:'M/d/y' : 'UTC' }} - <br/>
+                            {{:: studyItem.period2EndDate | date:'M/d/y' : 'UTC' }}
+                        </td>
+                        <td class="padding-h-10 text-center">
+                            {{:: studyItem.influencers.length | number }}
+                        </td>
+                        <td class="padding-h-10 text-center">
+                            {{:: studyItem.keywords | inlineKeywords }}
+                        </td>
+                        <td class="padding-h-10 text-center">
+                            {{:: studyItem.createdBy }}
+                        </td>
+                        <td class="padding-h-10 text-center">
+                            {{:: studyItem.createdDate | date:'M/d/y HH:MM' : 'UTC' }}
+                        </td>
+                        <td class="padding-h-10 text-center">
+
+                           <span class="cursor-pointer"
+                                 ng-if="studyItem.status === 'Draft'"
+                                 ng-click="study.navigateStudyTo(studyItem)">
+                                Draft
+                           </span>
+
+                            <span ng-if="studyItem.status === 'Processing'">
+                                In Progress
+                           </span>
+
+                            <span ng-if="studyItem.status === 'Submitted'">
+                                Submitted
+                            </span>
+
+                            <a ng-if="studyItem.status === 'Succeed'"
+                               ng-click="study.navigateStudyTo(studyItem)"
+                               class="cursor-pointer fg-acapulco fg-hover-allports font-weight-medium">
+                                Successful
+                            </a>
+
+                            <a class="cursor-pointer fg-umred fg-hover-allports font-weight-medium"
+                               ng-click="study.navigateStudyTo(studyItem)"
+                               ng-if="studyItem.status !== 'Draft'
+                                        && studyItem.status !== 'Processing'
+                                        && studyItem.status !== 'Submitted'
+                                        && studyItem.status !== 'Succeed'">
+                                Failed
+                            </a>
+                        </td>
+                        <td class="padding-h-10 text-center">
+
+                            <a title="View"
+                               ng-show="studyItem.status === 'Succeed'"
+                               ui-sref="app.study-edit-item({ id: studyItem.id, isSuccessStudy : true })"
+                               class="cursor-pointer fill-silver fill-hover-umred">
+                                <img src="../img/icon/icon-eye.svg" class="width-20 height-20 -js-svg-inline">
+                            </a>
+
+                            <a title="Download"
+                               ng-show="studyItem.status === 'Succeed'"
+                               ng-click=""
+                               class="cursor-pointer fill-silver fill-hover-umred">
+                                <img src="../img/icon/icon-download.svg" class="width-20 height-15 -js-svg-inline">
+                            </a>
+
+                            <a title="Delete"
+                               ng-click="study.deleteStudy(studyItem)"
+                               class="cursor-pointer fill-silver fill-hover-umred">
+                                <img src="../img/icon/icon-trash.svg" class="width-20 height-15 -js-svg-inline">
+                            </a>
+
+                        </td>
+                    </tr>
+
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- pagination: -->
+<div class="margin-top-15 margin-bottom-30 text-center">
+
+    <ul uib-pagination
+        max-size="5"
+        ng-change="study.setPage()"
+        ng-model="study.state.meta._page"
+        items-per-page="study.state.meta._limit"
+        total-items="study.state.studies.meta.totalItems"
+        template-url="app/core/html/directive-template/paginate-btn.html">
+    </ul>
+
+</div>

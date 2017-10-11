@@ -1,0 +1,292 @@
+<div class="position-relative">
+    <div class="row margin-top--20">
+        <div class="col-xs-12 col-lg-10 col-lg-offset-1 col-lg-9 col-xl-8">
+
+            <div class="row">
+
+                <form name="study.createStudyForm">
+                    <div class="col-xs-12 col-sm-9 col-md-6">
+                        <div class="row margin-top-40">
+
+                            <div class="col-xs-12 col-sm-6">
+
+                                <!-- Study Name -->
+                                <div class="form-group">
+                                    <label for="createstudy-name" class="hide">Study name:*</label>
+
+                                    <input id="createstudy-name" name="createstudy-name"
+                                           placeholder="Study Name:*" required
+                                           ng-model="study.state.name"
+                                           ng-change="study.isStudyNameExist(study.state.name)"
+                                           ng-model-options="{ debounce: 500 }"
+                                           class="form-control border-radius-25 border-none padding-v-10 padding-h-20 height-auto placeholder-umred"
+                                           ng-class="study.studyService.isStudyNameExist ||
+                                                  (study.createStudyForm['createstudy-name'].$invalid && study.createStudyForm['createstudy-name'].$touched) ?
+                                                  'error-input' : ''"
+                                    />
+                                    <span ng-show="study.studyService.meta.isStudyExistLoadin">
+                                        <i class="fa fa-spinner fa-pulse" aria-hidden="true"></i>
+                                    </span>
+                                    <p class="padding-h-10 margin-top-5 fg-umred" ng-if="study.studyService.isStudyNameExist">
+                                        "{{ study.state.name }}" already exist, kindly try other name
+                                    </p>
+                                </div>
+
+                                <!-- Agency -->
+                                <div class="form-group">
+                                    <label for="createstudy-agency" class="hide">Agency:*</label>
+                                    <input
+                                        id="createstudy-agency" name="createstudy-agency"
+                                        placeholder="Agency:*" required
+                                        class="form-control border-radius-25 border-none padding-v-10 padding-h-20 height-auto placeholder-umred"
+                                        ng-model="study.state.agency"
+                                        ng-class="study.createStudyForm['createstudy-agency'].$invalid && study.createStudyForm['createstudy-agency'].$touched?
+                                                  'error-input' : ''"
+                                    />
+
+                                </div>
+
+                                <!-- Client -->
+                                <div class="form-group">
+                                    <label for="createstudy-client" class="hide">Client:*</label>
+                                    <input
+                                        id="createstudy-client" name="createstudy-client"
+                                        placeholder="Client:*" required
+                                        ng-model="study.state.client"
+                                        class="form-control border-radius-25 border-none padding-v-10 padding-h-20 height-auto placeholder-umred"
+                                        ng-class="study.createStudyForm['createstudy-client'].$invalid && study.createStudyForm['createstudy-client'].$touched?
+                                                  'error-input' : ''"
+                                    />
+                                </div>
+                            </div>
+
+                            <div class="col-xs-12 col-sm-6">
+
+                                <!-- Approver -->
+                                <div class="form-group">
+                                    <label for="createstudy-approver" class="hide">Approver:*</label>
+                                    <input
+                                        id="createstudy-approver" name="createstudy-approver"
+                                        placeholder="Approver:*" required
+                                        ng-model="study.state.approver"
+                                        class="form-control border-radius-25 border-none padding-v-10 padding-h-20 height-auto placeholder-umred"
+                                        ng-class="study.createStudyForm['createstudy-approver'].$invalid && study.createStudyForm['createstudy-approver'].$touched?
+                                                  'error-input' : ''"
+                                    />
+                                </div>
+
+                                <!-- Countries -->
+                                <div class="form-group">
+                                    <label class="hide">Countries:</label>
+
+                                    <tags-input ng-hide="study.countryService.meta.isCountryError"
+                                                ng-model="study.state.countries"
+                                                add-from-autocomplete-only="true"
+                                                placeholder="Countries:"
+                                                replace-spaces-with-dashes="false"
+                                                display-property="name"
+                                                class="form-control border-radius-25 border-none padding-v-10 padding-h-20 height-auto -js-focus-within">
+                                        <auto-complete source="study.searchCountries($query)"
+                                                       load-on-focus="true">
+                                        </auto-complete>
+                                    </tags-input>
+
+                                    <div ng-show="study.countryService.meta.isCountryError"
+                                         class="fg-umred font-size-tiny text-center">
+                                        Error fetching countries
+                                    </div>
+
+
+                                </div>
+
+                                <!-- Languages -->
+                                <div class="form-group">
+                                    <label class="hide">Languages:</label>
+
+                                    <tags-input ng-hide="study.languageService.isLanguagesError"
+                                                add-from-autocomplete-only="true"
+                                                ng-model="study.state.languages"
+                                                placeholder="Languages:"
+                                                display-property="name"
+                                                replace-spaces-with-dashes="false"
+                                                class="form-control border-radius-25 border-none padding-v-10 padding-h-20 height-auto -js-focus-within">
+                                        <auto-complete source="study.searchLanguages($query)"
+                                                       load-on-focus="true">
+                                        </auto-complete>
+                                    </tags-input>
+
+                                    <div ng-show="study.languageService.isLanguagesError" class="fg-umred font-size-tiny">
+                                        Error fetching languages, please wait...
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="col-xs-12 col-sm-9 col-md-6">
+                        <div class="row margin-v-15 margin-v-md-0">
+                            <div class="col-xs-12">
+
+                                <label class="text-uppercase font-weight-medium">Date Range:</label>
+                                <div class="row">
+
+                                    <div class="col-xs-12 col-sm-6 padding-right-sm-0">
+
+                                        <!--Date Range Picker 1-->
+                                        <div class="form-group">
+                                            <div class="padding-h-15 padding-v-5 margin-bottom-10 bkg-umred fg-white border-none border-partial-sm-right border-color-white">
+                                                <label for="createstudy-daterange-p1" class="margin-v-0 font-weight-medium">Period 1 Selection</label>
+                                            </div>
+                                            <div class="input-group bkg-white border-radius-25 margin-right-sm-5 -js-focus-within"
+                                                 ng-class="study.createStudyForm['createstudy-daterange-p1'].$invalid && study.createStudyForm['createstudy-daterange-p1'].$touched
+                                                           ? 'error-input fill-umred' : ''">
+                                                <div class="input-group-addon border-none bkg-transparent padding-v-0 padding-right-0">
+                                                    <img class="icon-datepicker -js-svg-inline fill-silver" src="../img/icon/icon-datepicker.svg"/>
+                                                </div>
+                                                <input
+                                                    id="createstudy-daterange-p1" name="createstudy-daterange-p1"
+                                                    type="daterange" placeholder="Date range:*" required
+                                                    data-daterangepicker-template="#createstudy-daterangepicker"
+                                                    ng-model="study.state.period1Dates"
+                                                    class="form-control bkg-transparent shadow-none border-none placeholder-umred padding-v-10 padding-right-20 height-auto -js-daterangepicker"
+                                                />
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-xs-12 col-sm-6 padding-left-sm-0">
+
+                                        <!--Date Range Picker 2-->
+                                        <div class="form-group">
+                                            <div class="padding-h-15 padding-v-5 margin-bottom-10 bkg-umred fg-white">
+                                                <label for="createstudy-daterange-p2" class="margin-v-0 font-weight-medium">Period 2 Selection</label>
+                                            </div>
+                                            <div class="input-group bkg-white border-radius-25 margin-left-sm-5 -js-focus-within"
+                                                 ng-class="study.createStudyForm['createstudy-daterange-p2'].$invalid && study.createStudyForm['createstudy-daterange-p2'].$touched
+                                                           ? 'error-input fill-umred' : ''">
+                                                <div class="input-group-addon border-none bkg-transparent padding-v-0 padding-right-0">
+                                                    <img class="icon-datepicker -js-svg-inline fill-silver" src="../img/icon/icon-datepicker.svg"/>
+                                                </div>
+                                                <input
+                                                    id="createstudy-daterange-p2" name="createstudy-daterange-p2"
+                                                    type="daterange" placeholder="Date range:*" required
+                                                    data-daterangepicker-template="#createstudy-daterangepicker"
+                                                    ng-model="study.state.period2Dates"
+                                                    class="form-control bkg-transparent shadow-none border-none placeholder-umred padding-v-10 padding-right-20 height-auto -js-daterangepicker"
+                                                />
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="row margin-v-15 margin-v-md-0">
+
+                            <div class="col-xs-12 col-sm-6">
+
+                                <!-- Keywords -->
+                                <div class="form-group">
+
+                                    <label class="text-uppercase font-weight-medium">Keywords:</label>
+                                    <tags-input ng-model="study.state.keywords"
+                                                placeholder="Add keyword"
+                                                replace-spaces-with-dashes="false"
+                                                class="form-control border-radius-25 border-none padding-v-10 padding-h-20 height-auto -js-focus-within"
+                                                use-strings="true">
+                                    </tags-input>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </form>
+
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+<div id="createstudy-daterangepicker" class="hide">
+    <div class="daterangepicker no-bubble dropdown-menu">
+
+        <div class="ranges sm-has-divider border-color-silver">
+
+            <div class="daterangepicker_input inblock-top width-100">
+                <label class="font-size-small fg-dovegrey margin-bottom-0">From:</label>
+                <input class="input-mini no-icon form-control font-size-small" type="text" name="daterangepicker_start" value=""/>
+                <div class="calendar-time">
+                    <div></div>
+                </div>
+            </div>
+
+            <div class="daterangepicker_input inblock-top width-100">
+                <label class="font-size-small fg-dovegrey margin-bottom-0">To:</label>
+                <input class="input-mini no-icon form-control font-size-small" type="text" name="daterangepicker_end" value=""/>
+                <div class="calendar-time">
+                    <div></div>
+                </div>
+            </div>
+
+            <div class="range_inputs margin-v-5">
+                <button class="applyBtn width-100 font-weight-normal border-radius-25 bkg-umred bkg-hover-burntumber bkg-focus-burntumber fg-white fg-hover-white fg-focus-white" disabled="disabled" type="button"></button>
+                <button class="cancelBtn width-100 font-weight-normal border-radius-25 bkg-umred bkg-hover-burntumber bkg-focus-burntumber fg-white fg-hover-white fg-focus-white" type="button"></button>
+            </div>
+
+            <div class="margin-top-30 margin-top-sm-50">
+                <p class="fg-dovegrey font-size-base font-weight-bold">Search by:</p>
+                <!-- add "active" class to buttons that are clicked -->
+                <button
+                    type="button"
+                    class="btn -js-btn-setrange width-100 margin-bottom-5 font-weight-normal border-radius-25 border-color-umred border-active-color-dovegrey bkg-transparent bkg-hover-umred bkg-active-dovegrey fg-dovegrey fg-hover-white fg-active-white"
+                    data-range-start="01/01/2017"
+                    data-range-end="03/31/2017"
+                    data-range-format="MM/DD/YYYY"
+                >Q1
+                </button>
+                <button
+                    type="button"
+                    class="btn -js-btn-setrange width-100 margin-bottom-5 font-weight-normal border-radius-25 border-color-umred border-active-color-dovegrey bkg-transparent bkg-hover-umred bkg-active-dovegrey fg-dovegrey fg-hover-white fg-active-white"
+                    data-range-start="04/01/2017"
+                    data-range-end="06/30/2017"
+                    data-range-format="MM/DD/YYYY"
+                >Q2
+                </button>
+                <br/>
+                <button
+                    type="button"
+                    class="btn -js-btn-setrange width-100 margin-bottom-5 font-weight-normal border-radius-25 border-color-umred border-active-color-dovegrey bkg-transparent bkg-hover-umred bkg-active-dovegrey fg-dovegrey fg-hover-white fg-active-white"
+                    data-range-start="07/01/2017"
+                    data-range-end="09/30/2017"
+                    data-range-format="MM/DD/YYYY"
+                >Q3
+                </button>
+                <button
+                    type="button"
+                    class="btn -js-btn-setrange width-100 margin-bottom-5 font-weight-normal border-radius-25 border-color-umred border-active-color-dovegrey bkg-transparent bkg-hover-umred bkg-active-dovegrey fg-dovegrey fg-hover-white fg-active-white"
+                    data-range-start="10/01/2017"
+                    data-range-end="12/31/2017"
+                    data-range-format="MM/DD/YYYY"
+                >Q4
+                </button>
+            </div>
+
+        </div>
+
+        <div class="calendar left um-calendar sm-has-divider border-color-silver">
+            <div class="calendar-table"></div>
+        </div>
+
+        <div class="calendar right um-calendar sm-has-divider border-color-silver">
+            <div class="calendar-table"></div>
+        </div>
+
+    </div>
+</div>
